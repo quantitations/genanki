@@ -104,7 +104,7 @@ class Model:
       "id": str(self.model_id),
       "latexPost": "\\end{document}",
       "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n"
-                  "\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+                  "\\usepackage[utf8]{inputenc}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n\\scriptsize\n",
       "mod": now_ts,
       "name": self.name,
       "req": self._req,
