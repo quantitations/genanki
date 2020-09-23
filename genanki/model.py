@@ -13,13 +13,13 @@ class Model:
   FRONT_BACK = 0
   CLOZE = 1
 
-  def __init__(self, model_id=None, name=None, fields=None, templates=None, css='', latex_pre=LATEX_PRE, model_type=FRONT_BACK):
+  def __init__(self, model_id=None, name=None, fields=None, templates=None, css='', latexPre=LATEX_PRE, model_type=FRONT_BACK):
     self.model_id = model_id
     self.name = name
     self.set_fields(fields)
     self.set_templates(templates)
     self.css = css
-    self.latex_pre = latex_pre
+    self.latexPre = latexPre
     self.model_type = model_type
 
   def set_fields(self, fields):
@@ -109,7 +109,7 @@ class Model:
       "flds": self.fields,
       "id": str(self.model_id),
       "latexPost": "\\end{document}",
-      "latexPre": self.latex_pre,
+      "latexPre": self.latexPre,
       "mod": now_ts,
       "name": self.name,
       "req": self._req,
