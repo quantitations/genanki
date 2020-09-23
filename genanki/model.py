@@ -3,17 +3,23 @@ from cached_property import cached_property
 import pystache
 import yaml
 
+LATEX_PRE = """
+\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n
+\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n
+"""
+
 class Model:
 
   FRONT_BACK = 0
   CLOZE = 1
 
-  def __init__(self, model_id=None, name=None, fields=None, templates=None, css='', model_type=FRONT_BACK):
+  def __init__(self, model_id=None, name=None, fields=None, templates=None, css='', latex_pre=LATEX_PRE, model_type=FRONT_BACK):
     self.model_id = model_id
     self.name = name
     self.set_fields(fields)
     self.set_templates(templates)
     self.css = css
+    self.latex_pre = latex_pre
     self.model_type = model_type
 
   def set_fields(self, fields):
@@ -103,8 +109,7 @@ class Model:
       "flds": self.fields,
       "id": str(self.model_id),
       "latexPost": "\\end{document}",
-      "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage{amssymb,amsmath}\n"
-                  "\\usepackage[utf8]{inputenc}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n\\scriptsize\n",
+      "latexPre": self.latex_pre,
       "mod": now_ts,
       "name": self.name,
       "req": self._req,
